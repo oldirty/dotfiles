@@ -57,9 +57,33 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+	#return value visualisation stolen from archwiki
+set_prompt () {
+    Last_Command=$? # Must come first!
+    Blue='\[\e[01;34m\]'
+    White='\[\e[01;37m\]'
+    Red='\[\e[01;31m\]'
+    Green='\[\e[01;32m\]'
+    Reset='\[\e[00m\]'
+    FancyX='\342\234\227'
+    Checkmark='\342\234\223'
+
+    # Add a bright white exit status for the last command
+    PS1="$White\$? "
+    # If it was successful, print a green check mark. Otherwise, print
+    # a red X.
+    if [[ $Last_Command == 0 ]]; then
+        PS1+="$Green$Checkmark "
+    else
+        PS1+="$Red$FancyX "
+    fi
+    # Print the working directory and prompt marker in blue, and reset
+    # the text color to the default.
+	PS1+="$Green\u$White@$Red\h:"
+    PS1+="$Blue\\w \\\$$Reset "
+}
+PROMPT_COMMAND='set_prompt'
+
 fi
 unset color_prompt force_color_prompt
 
