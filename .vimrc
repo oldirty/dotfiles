@@ -21,18 +21,27 @@ set laststatus=2		" Always show status line
 "}}}
 " Indent intelligently"{{{
 set ai
-set si"}}}
-
+set si
+"}}}
 " Theme"{{{
 set background=dark
-colorscheme solarized"}}}
-
+colorscheme solarized
+"}}}
 " Folding"{{{
-set foldmethod=syntax"}}}
+set foldmethod=marker
+"}}}
 " Spacebar to toggle folds. From vim.wikia.com"{{{
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
-vnoremap <Space> zf"}}}
+vnoremap <Space> zf
+"}}}
 " Save and reload folds silently"{{{
 autocmd BufWinLeave *.* mkview
-autocmd BufWinEnter *.* silent loadview "}}}
-
+autocmd BufWinEnter *.* silent loadview
+"}}}
+" Visual map to surround blocks in quotes/braces "{{{
+vnoremap <Leader>] c[]hp
+vnoremap <Leader>} c{}hp
+vnoremap <Leader>) c()hp
+vnoremap <Leader>' c''hp
+vnoremap <Leader>" c""hp
+"}}}
