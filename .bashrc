@@ -72,11 +72,11 @@ set_prompt () {
     PS1="$White\$? "
     # If it was successful, print a green check mark. Otherwise, print
     # a red X.
-    if [[ $Last_Command == 0 ]]; then
-        PS1+="$Green$Checkmark "
-    else
-        PS1+="$Red$FancyX "
-    fi
+#    if [[ $Last_Command == 0 ]]; then
+#        PS1+="$Green$Checkmark "
+#    else
+#        PS1+="$Red$FancyX "
+#    fi
     # Print the working directory and prompt marker in blue, and reset
     # the text color to the default.
 	PS1+="$Green\u$White@$Red\h:"
@@ -136,3 +136,8 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+set -o vi
+EDITOR=vim
+VISUAL=vim
+export EDITOR VISUAL

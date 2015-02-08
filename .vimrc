@@ -1,9 +1,16 @@
 set nocompatible		" first and foremost..."{{{
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+Plugin 'tpope/vim-fugitive'
+call vundle#end()
 "}}}
 " Indentation and syntax"{{{
-filetype indent on      " activates indenting for files
-filetype plugin on		" activates indent plugins
+filetype indent plugin on      " activates indenting for files
 syntax enable			" Syntax highlighting
+" Handy vim-fugitive status line
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 "}}}
 " General variables... tabstop, etc"{{{
 set tabstop=4 			" Screen space is valuable...
@@ -18,30 +25,27 @@ set ruler				" always show line number / pos
 set smartcase			" For searching
 set showmatch			" for matching [{( brackets
 set laststatus=2		" Always show status line
-"}}}
-" Indent intelligently"{{{
 set ai
 set si
-"}}}
-" Theme"{{{
 set background=dark
 colorscheme solarized
-"}}}
-" Folding"{{{
 set foldmethod=marker
+let mapleader="q"		" Most of my leader mappings are on the right side of the keyboard...
 "}}}
-" Spacebar to toggle folds. From vim.wikia.com"{{{
+" My super-special key maps "{{{
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
-"}}}
-" Save and reload folds silently"{{{
-autocmd BufWinLeave *.* mkview
-autocmd BufWinEnter *.* silent loadview
-"}}}
-" Visual map to surround blocks in quotes/braces "{{{
 vnoremap <Leader>] c[]hp
 vnoremap <Leader>} c{}hp
 vnoremap <Leader>) c()hp
 vnoremap <Leader>' c''hp
 vnoremap <Leader>" c""hp
+map <Leader>OD :tabp
+map <Leader>OC :tabn
+" friggin escape key...
+imap <Leader>q <Esc>
+"}}}
+" Save and reload folds silently"{{{
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview
 "}}}
