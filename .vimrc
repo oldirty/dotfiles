@@ -35,6 +35,10 @@ let mapleader="q"		" Most of my leader mappings are on the right side of the key
 " My super-special key maps "{{{
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
+nnoremap <C-l> <C-W><C-l>
+nnoremap <C-j> <C-W><C-j>
+nnoremap <C-k> <C-W><C-k>
+nnoremap <C-h> <C-W><C-h>
 vnoremap <Leader>] c[]hp
 vnoremap <Leader>} c{}hp
 vnoremap <Leader>) c()hp
@@ -44,6 +48,10 @@ map <Leader>OD :tabp
 map <Leader>OC :tabn
 " friggin escape key...
 imap <Leader>q <Esc>
+" This is literally the gnarliest way to quickly run the current script with
+" no args. placed here to show i have a sense of humor.
+nnoremap Q 1/!l"ay$:!a %
+
 "}}}
 " Save and reload folds silently"{{{
 autocmd BufWinLeave *.* mkview
